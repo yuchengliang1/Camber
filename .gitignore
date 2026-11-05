@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+_qa_figures/
+_qa_rendered/
+tmp/
+
+# Participant recordings and derived training artifacts are not distributed.
+data/sub*/
+results/
+local_runs/
+checkpoints/
+protocols/
+manuscript/
+*.pt
+*.pth
+*.ckpt
+
+# Generated figures and editor files.
+figures/output/
+projection/output/
+.DS_Store
+Thumbs.db
+*.log
