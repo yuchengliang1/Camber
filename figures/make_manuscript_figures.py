@@ -76,7 +76,7 @@ def save(fig, output: Path, name: str):
 
 
 def panel(ax, letter, title):
-    ax.set_title(f"{letter}  {title}", loc="left", fontweight="bold", pad=8)
+    ax.set_title(f"({letter.lower()})  {title}", loc="left", fontweight="bold", pad=8)
 
 
 def horizontal_estimates(ax, names, values, cis, *, xlim, color=BLUE, baseline=None):
@@ -721,7 +721,7 @@ def figure_8(results: Path, data: Path, output: Path):
         ax = fig.add_subplot(gs[0, i])
         ids, xy = positions[mod]
         im = draw_map(ax, ids, xy, centered[i], vmin=-limit, vmax=limit, cmap="RdBu_r",
-                      title=("A" if i == 0 else "B") + "  " + mod.upper() + " channel sensitivity",
+                      title=("(a)" if i == 0 else "(b)") + "  " + mod.upper() + " channel sensitivity",
                       marker_size=7, title_weight="bold")
     cax = fig.add_subplot(gs[0, 2])
     fig.colorbar(im, cax=cax, label="Drop relative to pooled median")
@@ -746,10 +746,10 @@ def figure_s1(results: Path, data: Path, output: Path):
         limit = float(np.nanmax(np.abs(centered)))
         for col, mod in enumerate(("eeg", "meg")):
             ids, xy = positions[mod]
-            letter = chr(ord("A") + 2 * band + col)
+            letter = chr(ord("a") + 2 * band + col)
             image = draw_map(
                 axes[band, col], ids, xy, centered[col], vmin=-limit, vmax=limit,
-                cmap="RdBu_r", title=f"{letter}  {titles[band][col]} {band_name} class range",
+                cmap="RdBu_r", title=f"({letter})  {titles[band][col]} {band_name} class range",
             )
             fig.colorbar(image, ax=axes[band, col], shrink=0.7, pad=0.01, label="Centered class range (dB)")
     fig.suptitle("Task-interval power: range across analysis-class means", fontsize=10, weight="bold")
@@ -806,3 +806,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
